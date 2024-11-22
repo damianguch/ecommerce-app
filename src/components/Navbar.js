@@ -40,7 +40,7 @@ const NavBar = () => {
               placeholder="Search"
               className="mr-sm-2 me-2"
             />
-            <Button variant="secondary" className="me-5">
+            <Button variant="secondary" className="me-3">
               Search
             </Button>
           </Form>

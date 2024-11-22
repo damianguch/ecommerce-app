@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { remove } from '../store/cartSlice';
 import { Link } from 'react-router-dom';
 import { FaLongArrowAltRight } from 'react-icons/fa';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Cart = () => {
   const products = useSelector((state) => state.cart);
@@ -11,6 +12,10 @@ const Cart = () => {
   const removeFromCart = (id) => {
     // dispatch a remove action
     dispatch(remove(id));
+    toast.success('Product Removed From Cart', {
+      position: 'top-right',
+      autoClose: 2000
+    });
   };
 
   const cards = products.map((product) => (
@@ -23,12 +28,12 @@ const Cart = () => {
           <Card.Img
             variant="top"
             src={product.image}
-            style={{ width: '100px', height: '130px', marginTop: '5px' }}
+            style={{ width: '100px', height: '130px', marginTop: '8px' }}
           />
         </div>
         <Card.Body>
-          <Card.Title>{product.title}</Card.Title>
-          <Card.Text>${product.price}</Card.Text>
+          <Card.Title className="fw-bold">{product.title}</Card.Title>
+          <Card.Text className="fs-5">${product.price}</Card.Text>
         </Card.Body>
         <Card.Footer
           style={{
@@ -44,6 +49,7 @@ const Cart = () => {
           <Button to="/" as={Link} className="mb-3 ms-3" variant="primary">
             Continue Shopping
           </Button>
+          <ToastContainer />
         </Card.Footer>
       </Card>
     </div>

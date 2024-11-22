@@ -29,7 +29,7 @@ const productSlice = createSlice({
   }
 });
 
-export const { fetchProducts } = productSlice.actions;
+// export const { fetchProducts } = productSlice.actions;
 export default productSlice.reducer;
 
 export const getProducts = createAsyncThunk('products/get', async () => {

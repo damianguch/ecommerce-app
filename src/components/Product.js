@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { add } from '../store/cartSlice';
 import { getProducts } from '../store/productSlice';
 import StatusCode from '../Utils/statusCode';
+import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Product = () => {
   // const [products, setProducts] = useState([]);
@@ -32,7 +34,6 @@ const Product = () => {
 
       // Set effectRan to true after API call
       effectRan.current = true;
-      return () => console.log('Unmounted!');
     }
   }, [dispatch]);
 
@@ -47,12 +48,20 @@ const Product = () => {
   }
 
   if (status === StatusCode.ERROR) {
-    return <h5>Something went wrong! Try again later</h5>;
+    return (
+      <h4 className="text-danger mt-4">
+        Something went wrong! Try again later
+      </h4>
+    );
   }
 
   const addToCart = (product) => {
     // dispatch an add action
     dispatch(add(product));
+    toast.success('Product Added To Cart', {
+      position: 'top-right',
+      autoClose: 2000
+    });
   };
 
   const cards = products.map((product) => (
@@ -68,14 +77,20 @@ const Product = () => {
             style={{ width: '100px', height: '130px', marginTop: '5px' }}
           />
         </div>
-        <Card.Body>
+        <Card.Body
+          className="text-decoration-none"
+          role="button"
+          to={`/product-details/${product.id}`}
+          as={Link}>
           <Card.Title>{product.title}</Card.Title>
           <Card.Text>${product.price}</Card.Text>
         </Card.Body>
+
         <Card.Footer style={{ background: 'white', borderTop: 'none' }}>
           <Button variant="primary" onClick={() => addToCart(product)}>
             Add To Cart
           </Button>
+          <ToastContainer />
         </Card.Footer>
       </Card>
     </div>

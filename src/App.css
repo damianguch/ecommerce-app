@@ -2,7 +2,9 @@
   font-family: 'Roboto', sans-serif;
   text-align: center;
   background-color: #f4f4f4;
-  /* For .App class covers the entire height and width of the viewport*/
+  /* For .App class to cover the entire height 
+  and width of the viewport
+  */
   height: 100vh;
   width: 100vw;
 }
@@ -25,3 +27,11 @@
 .navbar-toggler-icon-white {
   background-color: white !important;
 }
+
+.btn-color {
+  background-color: #535357;
+}
+/* 
+.container {
+  overflow: hidden;
+} */
